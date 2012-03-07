@@ -1,2 +1,9 @@
 h1= title
-p Welcome to #{title}
+p Welcome to our WPM app
+
+div#yourname
+    label whats your name?
+        input(type="text", name="username", value="")
+    input(type="submit", value="OK", onclick="sendName()")
+
+div#userList

@@ -1,6 +1,36 @@
-!!!
+doctype 5
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body!= body
+    link(href='/stylesheets/style.css', rel='stylesheet')
+    
+    script(src='http://code.jquery.com/jquery-1.7.1.min.js')
+    script(src='/socket.io/socket.io.js')
+    script(src='/javascripts/main.js')
+
+    body
+        header
+            div#headerbar
+                div#headercontent
+                    h1= title 
+                    h2#Htop List
+                
+            
+
+                div#topbar
+                    ul#nav
+                        button#pl
+                            a(href='/processes') Show User List
+                        
+
+
+    section#wrapper!= body
+        footer
+          section.css-table
+            section.four-column
+              section.cell
+                p Using Express, and Socket IO
+              
+                
+    script
+        $('button').button();
