@@ -32,3 +32,15 @@ app.get('/', routes.index);
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+
+io.sockets.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+
+  setTimeout(function() {
+    socket.emit('newPoint', {lat: 51.5, lng: -0.09});
+  }, 3000);
+
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
