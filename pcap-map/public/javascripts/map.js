@@ -11,12 +11,13 @@ var cloudmade = new L.TileLayer('http://{s}.tile.cloudmade.com/' + apiKey +'/997
 
 // geographical point (longitude and latitude)
 var london = new L.LatLng(51.505, -0.09);
-map.setView(london, 13).addLayer(cloudmade);
+map.setView(london, 8).addLayer(cloudmade);
 
 // socket.io receiver
 var socket = io.connect('http://localhost');
 
 socket.on('newPoint', function (data) {
+  console.log("Recieved Data: ");
   console.log(data);
 
   // create a point
@@ -29,4 +30,5 @@ socket.on('newPoint', function (data) {
 
   var circle = new L.Circle(circleLocation, 100, circleOptions);
   map.addLayer(circle);
+  map.setView(circleLocation, 8);
 });
