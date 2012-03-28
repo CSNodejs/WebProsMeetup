@@ -10,11 +10,12 @@ var cloudmade = new L.TileLayer('http://{s}.tile.cloudmade.com/' + apiKey +'/997
 });
 
 // geographical point (longitude and latitude)
-var london = new L.LatLng(51.505, -0.09);
-map.setView(london, 8).addLayer(cloudmade);
+var usa = new L.LatLng(51.505, -0.09);
+map.setView(usa, 8).addLayer(cloudmade);
 
 // socket.io receiver
-var socket = io.connect('http://localhost');
+//the ip address will need to be changed to match your instances ip (localhost or servers ip)
+var socket = io.connect('http://10.1.10.5');
 
 socket.on('newPoint', function (data) {
   console.log("Recieved Data: ");

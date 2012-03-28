@@ -35,22 +35,21 @@ pcm = new pm();
 
 //Routes
 app.get('/', routes.index);
+app.get('/chez', routes.index);
 
-app.listen(3000);
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+app.listen(6819);
 
 //Detect socket connection.
 io.sockets.on('connection', function (socket) {
 
     // Set a small timeout before we emit.
     pcm.listen(function(data){
-        console.log("whoooo it werks!!!!!");
-        console.log(data);
         socket.emit('newPoint', {
             lng: data.longitude,
             lat: data.latitude
         })
     });
+    
     setTimeout(function() {
         // Simply emit the lat:lng for use on the map.
         socket.emit('newPoint', {

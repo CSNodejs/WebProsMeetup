@@ -4,5 +4,12 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'pcap-map' })
+    switch(req.route.path){
+        case "/":
+            res.render('index', { title: 'pcap-map' });
+            break;
+        case "/chez":
+            res.render("chez", { title: 'chez' });
+    }
+  
 };
