@@ -29,7 +29,7 @@ socket.on('newPoint', function (data) {
         fillOpacity: 0.5
     };
 
-  var circle = new L.Circle(circleLocation, 200, circleOptions);
+  var circle = new L.Circle(circleLocation, 500, circleOptions);
   map.addLayer(circle);
   map.setView(circleLocation, 8);
 });
