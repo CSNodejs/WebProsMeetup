@@ -70,11 +70,10 @@
             
             item.set('chattext', $chat.val());
             item.set('nicktext', $nick.val());
-            item.set({
-                chattext: item.get('nicktext') + ": " + item.get('chattext')
-            });
+            
             $chat.val("");
             $nick.hide();
+            
             socket.emit("newmessage", {
                 "text" : item.get('chattext'),
                 "user" : item.get('nicktext')
@@ -83,15 +82,14 @@
         },
         addItemSoc: function(data){
             var item = new Item();
+            
             item.set('chattext', data.text);
             item.set('nicktext', data.user);
-            item.set({
-                chattext: item.get('nicktext') + ": " + item.get('chattext')
-            });
-            this.collection.add(item); 
+            
+            this.collection.add(item);
         },
         appendItem: function(item){
-            $('ul', this.el).append("<li>" + item.get('chattext') + "</li>");
+            $('ul', this.el).append("<li>" + item.get('nicktext') + ":" + item.get('chattext') "</li>");
         }
     });
 
