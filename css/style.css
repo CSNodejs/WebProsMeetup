@@ -1,0 +1,23 @@
+body {
+  color: #333
+}
+
+#container {
+  padding: 1em;
+}
+
+#container li {
+  padding: 0 .25em;
+}
+
+.username {
+  color: #8e3400;
+}
+
+.username-me {
+  color: #3a0303;
+}
+
+.system-message {
+  color: #999;
+}
