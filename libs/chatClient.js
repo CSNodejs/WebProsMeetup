@@ -35,6 +35,11 @@
             button = $("<button/>", {
                 id : "add"
             }).html("Send"),
+            nicktext = $("<input/>", {
+                id : "nickentry",
+                width: 50,
+                placeholder: "Gimme ur nick!"
+            }),
             container = $("<ul/>",{
                 id : "container",
                 style : "border-color: black; border-width: 1px; border-style: solid;"
@@ -42,11 +47,6 @@
             textarea = $("<input/>", {
                 id : "chatentry",
                 width : 200
-            });
-            nicktext = $("<input/>", {
-                id : "nickentry",
-                width: 50,
-                placeholder: "Gimme ur nick!"
             });
            
             $(this.el).append(container);
