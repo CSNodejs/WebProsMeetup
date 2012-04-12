@@ -89,7 +89,7 @@
             this.collection.add(item);
         },
         appendItem: function(item){
-            $('ul', this.el).append("<li>" + item.get('nicktext') + ":" + item.get('chattext') "</li>");
+            $('ul', this.el).append("<li>" + item.get('nicktext') + ":" + item.get('chattext') + "</li>");
         }
     });
 
