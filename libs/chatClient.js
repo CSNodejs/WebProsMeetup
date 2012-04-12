@@ -66,7 +66,7 @@
             item.set('chattext', $chat.val());
             item.set('nicktext', $nick.val());
             item.set({
-                chattext: "user:" + item.get('nicktext') + " " + item.get('chattext');
+                chattext: "user:" + item.get('nicktext') + " " + item.get('chattext')
             });
             $chat.val("");
             $nick.hide();
