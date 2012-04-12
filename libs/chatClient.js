@@ -50,9 +50,9 @@
             });
            
             $(this.el).append(container);
+            $(this.el).append(nicktext);
             $(this.el).append(textarea);
             $(this.el).append(button);
-            $(this.el).append(nicktext);
            
             _(this.collection.models).each(function(item){ 
                 self.appendItem(item);
@@ -76,15 +76,14 @@
         addItemSoc: function(data){
             var item = new Item();
             item.set('chattext', data.text);
+            item.set('nicktext', data.user);
             item.set({
-                chattext: item.get('chattext') + " user:" + data.user 
+                chattext: "user:" + item.get('nicktext') + " " + item.get('chattext')
             });
             this.collection.add(item); 
         },
-        
         appendItem: function(item){
-        
-            $('ul', this.el).append("<li>"+item.get('chattext')+"</li>");
+            $('ul', this.el).append("<li>" + item.get('chattext') + "</li>");
         }
     });
 
