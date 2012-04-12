@@ -65,13 +65,20 @@ sio.sockets.on("connection", function (socket) {
         });
     });
 
-    socket.on("newUser", function (data) {
-        listView.addUserList(data);
+    socket.on("user", function(data){
+        socket.broadcast.emit("newUser", {
+            username: data
+        });
     });
-
-    socket.on("deleteUser", function (data) {
-        listView.removeUserList(data);
+    
+    
+    
+    socket.on("disconnected", function(){
+        socket.broadcast.emit("deleteUser", function (data) {
+        
+        });
     });
+    
 
     setTimeout(function () {
         socket.broadcast.emit('chatmessage', {

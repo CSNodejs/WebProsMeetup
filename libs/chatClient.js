@@ -70,14 +70,18 @@
             
             item.set('chattext', $chat.val());
             item.set('nicktext', $nick.val());
+            item.set('username', $nick.val());
             
             $chat.val("");
-            $nick.hide();
+            $nick.val() ? $nick.remove() : null;
             
             socket.emit("newmessage", {
                 "text" : item.get('chattext'),
                 "user" : item.get('nicktext')
             });
+            
+            socket.emit("user", item.get('nicktext'));
+            
             this.collection.add(item);
         },
         addItemSoc: function(data){
@@ -90,9 +94,9 @@
         },
         addUserList: function(data){
             var item = new Item();
-            item.set("nick", data.nick);
+            item.set("username", data.username);
             
-            $("#userlist").append("<li>" + item.get('nick') + "</li>");
+            $('#userlist').append('<li>' + item.get('username') + '</li>');
             this.collection.add(item);
         },
         removeUserList: function(data){
