@@ -7,7 +7,8 @@ body {
 }
 
 #container li {
-  padding: 0 .25em;
+  padding: .25em;
+  list-style: none;
 }
 
 .username {
