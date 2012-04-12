@@ -43,10 +43,16 @@
                 id : "chatentry",
                 width : 200
             });
+            nicktext = $("<input/>", {
+                id : "nickentry",
+                width: 50,
+                placeholder: "Gimme ur nick!"
+            });
            
             $(this.el).append(container);
             $(this.el).append(textarea);
             $(this.el).append(button);
+            $(this.el).append(nicktext);
            
             _(this.collection.models).each(function(item){ 
                 self.appendItem(item);
@@ -54,14 +60,18 @@
         },
         
         addItem: function(){
-            var item = new Item();
-            item.set('chattext', $('#chatentry').val());
+            var item = new Item(),
+                $chat = $('#chatentry'),
+                $nick = $('#nickentry');
+            item.set('chattext', $chat.val());
+            item.set('nicktext', $nick.val());
             item.set({
-                chattext: item.get('chattext') + " user:" + this.counter 
+                chattext: "user:" + item.get('nicktext') + " " + item.get('chattext');
             });
-            $('#chatentry').val("");
+            $chat.val("");
+            $nick.hide();
             socket.emit("newmessage", item.get('chattext'));
-            this.collection.add(item); 
+            this.collection.add(item);
         },
         addItemSoc: function(data){
             var item = new Item();
