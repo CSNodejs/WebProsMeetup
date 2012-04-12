@@ -66,7 +66,7 @@
             item.set('chattext', $chat.val());
             item.set('nicktext', $nick.val());
             item.set({
-                chattext: "user:" + item.get('nicktext') + " " + item.get('chattext')
+                chattext: item.get('nicktext') + ": " + item.get('chattext')
             });
             $chat.val("");
             $nick.hide();
@@ -81,7 +81,7 @@
             item.set('chattext', data.text);
             item.set('nicktext', data.user);
             item.set({
-                chattext: "user:" + item.get('nicktext') + " " + item.get('chattext')
+                chattext: item.get('nicktext') + ": " + item.get('chattext')
             });
             this.collection.add(item); 
         },
