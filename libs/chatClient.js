@@ -35,6 +35,11 @@
             button = $("<button/>", {
                 id : "add"
             }).html("Send"),
+            nicktext = $("<input/>", {
+                id : "nickentry",
+                width: 50,
+                placeholder: "Gimme ur nick!"
+            }),
             container = $("<ul/>",{
                 id : "container",
                 style : "border-color: black; border-width: 1px; border-style: solid;"
@@ -43,20 +48,15 @@
                 id : "chatentry",
                 width : 200
             });
-            nicktext = $("<input/>", {
-                id : "nickentry",
-                width: 50,
-                placeholder: "Gimme ur nick!"
-            });
             
             container.wrap(function() {
                 return '<div class="container" />';
             });
            
             $(this.el).append(container);
+            $(this.el).append(nicktext);
             $(this.el).append(textarea);
             $(this.el).append(button);
-            $(this.el).append(nicktext);
            
             _(this.collection.models).each(function(item){ 
                 self.appendItem(item);
@@ -71,25 +71,27 @@
             item.set('chattext', $chat.val());
             item.set('nicktext', $nick.val());
             item.set({
-                chattext: "user:" + item.get('nicktext') + " " + item.get('chattext')
+                chattext: item.get('nicktext') + ": " + item.get('chattext')
             });
             $chat.val("");
             $nick.hide();
-            socket.emit("newmessage", item.get('chattext'));
+            socket.emit("newmessage", {
+                "text" : item.get('chattext'),
+                "user" : item.get('nicktext')
+            });
             this.collection.add(item);
         },
         addItemSoc: function(data){
             var item = new Item();
             item.set('chattext', data.text);
+            item.set('nicktext', data.user);
             item.set({
-                chattext: item.get('chattext') + " user:" + data.user 
+                chattext: item.get('nicktext') + ": " + item.get('chattext')
             });
             this.collection.add(item); 
         },
-        
         appendItem: function(item){
-        
-            $('ul', this.el).append("<li>"+item.get('chattext')+"</li>");
+            $('ul', this.el).append("<li>" + item.get('chattext') + "</li>");
         }
     });
 

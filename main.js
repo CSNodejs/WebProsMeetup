@@ -60,15 +60,14 @@ sio.sockets.on("connection", function(socket){
     
     socket.on("newmessage", function(msg){
        socket.broadcast.emit("chatmessage", {
-           text: msg,
-           user: "default"
+           text: msg.text,
+           user: msg.user
        }) 
     });
     
     setTimeout(function() {
         socket.broadcast.emit('chatmessage', {
-            text: "Hello chez", 
-            user: "monkey"
+            text: "New user has entered chat."
         });
     }, 3000);
     
