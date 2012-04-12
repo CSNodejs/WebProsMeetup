@@ -35,7 +35,7 @@ server = http.createServer(function(request, response) {
                 return;
             }
             //check to see if the file is a .js file
-            var filematch = new RegExp(/(\.)(?=js)(.*)/);
+            var filematch = new RegExp(/(js$)/);
             
             //if file is a javascript file send the file content-type as javascript otherwise its sent as text/plain
             if(filename.match(filematch)){
