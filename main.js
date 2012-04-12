@@ -67,8 +67,7 @@ sio.sockets.on("connection", function(socket){
     
     setTimeout(function() {
         socket.broadcast.emit('chatmessage', {
-            text: "Hello chez", 
-            user: "monkey"
+            text: "New user has entered chat."
         });
     }, 3000);
     
