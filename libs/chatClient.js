@@ -44,19 +44,19 @@
                 id : "container",
                 style : "border-color: black; border-width: 1px; border-style: solid;"
             }),
+            UserList = $("<ul/>", {
+                id : "userlist"                
+            }),
             textarea = $("<input/>", {
                 id : "chatentry",
                 width : 200
             });
             
-            container.wrap(function() {
-                return '<div class="container" />';
-            });
-           
-            $(this.el).append(container);
+            $("#main").append(container);
             $(this.el).append(nicktext);
             $(this.el).append(textarea);
             $(this.el).append(button);
+            $("#aside").append(UserList);
            
             _(this.collection.models).each(function(item){ 
                 self.appendItem(item);
@@ -88,6 +88,17 @@
             
             this.collection.add(item);
         },
+        addUserList: function(data){
+            var item = new Item();
+            item.set("nick", data.nick);
+            
+            $("#userlist").append("<li>" + item.get('nick') + "</li>");
+            this.collection.add(item);
+        },
+        removeUserList: function(data){
+            
+            //$('ul', this.el).append("<li>" + item.get('nicktext') + ":" + item.get('chattext') + "</li>");
+        },
         appendItem: function(item){
             $('ul', this.el).append("<li>" + item.get('nicktext') + ":" + item.get('chattext') + "</li>");
         }
@@ -100,5 +111,12 @@
         listView.addItemSoc(data);
     });
     
-        
+    socket.on("newUser", function(data){
+        listView.addUserList(data);
+    });
+    
+    socket.on("deleteUser", function(data){
+       listView.removeUserList(data); 
+    });
+    
 })(jQuery);
