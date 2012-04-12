@@ -70,7 +70,10 @@
             });
             $chat.val("");
             $nick.hide();
-            socket.emit("newmessage", item.get('chattext'));
+            socket.emit("newmessage", {
+                "text" : item.get('chattext'),
+                "user" : item.get('nicktext')
+            });
             this.collection.add(item);
         },
         addItemSoc: function(data){
