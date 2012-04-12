@@ -3,12 +3,22 @@ body {
 }
 
 #container {
-  padding: 1em;
+  padding: 2.5%;
+  width: 60%;
+  float: left;
+  margin: 0;
 }
 
 #container li {
   padding: .25em;
   list-style: none;
+}
+
+#users {
+  width: 30%;
+  padding: 2.5%;
+  margin: 0;
+  float: right;
 }
 
 .username {
