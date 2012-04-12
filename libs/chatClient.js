@@ -1,6 +1,6 @@
 (function($){
     
-    var socket = io.connect("http://localhost/");
+    var socket = io.connect("http://173.8.248.29/");
     
     var Item = Backbone.Model.extend({
         defaults: {
@@ -48,6 +48,10 @@
                 id : "chatentry",
                 width : 200
             });
+            
+            container.wrap(function() {
+                return '<div class="container" />';
+            });
            
             $(this.el).append(container);
             $(this.el).append(nicktext);
@@ -61,8 +65,9 @@
         
         addItem: function(){
             var item = new Item(),
-                $chat = $('#chatentry'),
-                $nick = $('#nickentry');
+            $chat = $('#chatentry'),
+            $nick = $('#nickentry');
+            
             item.set('chattext', $chat.val());
             item.set('nicktext', $nick.val());
             item.set({
