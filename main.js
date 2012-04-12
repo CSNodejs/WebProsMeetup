@@ -60,8 +60,8 @@ sio.sockets.on("connection", function(socket){
     
     socket.on("newmessage", function(msg){
        socket.broadcast.emit("chatmessage", {
-           text: msg,
-           user: "default"
+           text: msg.text,
+           user: msg.user
        }) 
     });
     
